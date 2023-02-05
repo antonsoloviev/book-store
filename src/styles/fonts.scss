@@ -1,0 +1,69 @@
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas Neue Thin'), local('BebasNeue-Thin'),
+    url('../assets/fonts/BebasNeue/bebasneuethin.woff2') format('woff2'),
+    url('../assets/fonts/BebasNeue/bebasneuethin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas Neue Light'), local('BebasNeue-Light'),
+    url('../assets/fonts/BebasNeue/bebasneuelight.woff2') format('woff2'),
+    url('../assets/fonts/BebasNeue/bebasneuelight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas Neue Book'), local('BebasNeueBook'),
+    url('../assets/fonts/BebasNeue/bebasneuebook.woff2') format('woff2'),
+    url('../assets/fonts/BebasNeue/bebasneuebook.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas Neue Regular'), local('BebasNeueRegular'),
+    url('../assets/fonts/BebasNeue/bebasneueregular.woff2') format('woff2'),
+    url('../assets/fonts/BebasNeue/bebasneueregular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas Neue Bold'), local('BebasNeueBold'),
+    url('../assets/fonts/BebasNeue/bebasneuebold.woff2') format('woff2'),
+    url('../assets/fonts/BebasNeue/bebasneuebold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HeliosC';
+  src: local('HeliosC'), local('Helios C'),
+    url('../assets/fonts/Helios/HeliosC.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeliosC';
+  src: local('HeliosC-Italic'),
+    url('../assets/fonts/Helios/HeliosC-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HeliosC';
+  src: local('HeliosLightC-Italic'),
+    url('../assets/fonts/Helios/HeliosLightC-Italic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HeliosC';
+  src: local('HeliosC-Bold'),
+    url('../assets/fonts/Helios/HeliosC-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}

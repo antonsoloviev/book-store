@@ -1,0 +1,85 @@
+/* import */
+@import './styles/reset.scss';
+@import './styles/fonts.scss';
+@import './styles/variables.scss';
+@import './styles/mixins.scss';
+
+// @import 'variables.scss';
+
+// @import 'mixins.scss';
+
+body {
+  margin: 0;
+  font-family: $font-family-default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wrapper {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'Bebas Neue';
+  font-size: 5.6rem;
+}
+
+.font-200 {
+  font-family: 'Bebas Neue';
+  font-size: 1.6rem;
+  font-weight: 200;
+  margin-bottom: 8px;
+}
+
+.font-300 {
+  font-family: 'Bebas Neue';
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 8px;
+}
+
+.font-400 {
+  font-family: 'Bebas Neue';
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.font-700 {
+  font-family: 'Bebas Neue';
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.font-helios-regular {
+  font-family: 'HeliosC';
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.font-helios-italic {
+  font-family: 'HeliosC';
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.font-helios-italic-light {
+  font-family: 'HeliosC';
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.font-helios-bold {
+  font-family: 'HeliosC';
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-style: normal;
+}
