@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import Card from '../Card/Card';
-import { getBooks, booksSelector } from '../../store/books-slice';
+import { getBooks, booksSelector, IBook } from '../../store/books-slice';
 
-export const CardList = () => {
+export const NewBooks = () => {
   const books = useAppSelector(booksSelector);
   const dispatch = useAppDispatch();
 
@@ -12,8 +12,8 @@ export const CardList = () => {
   }, [dispatch]);
 
   return (
-    <div className="card-list">
-      {books.map((book) => {
+    <div className="cards-container">
+      {books.map((book: IBook) => {
         return <Card key={book.isbn13} data={book} />;
       })}
     </div>

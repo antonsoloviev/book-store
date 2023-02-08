@@ -4,8 +4,7 @@ import './App.scss';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Card from './components/Card/Card';
-import { CardList } from './components/NewBooks/NewBooks';
+import { NewBooks } from './components/NewBooks/NewBooks';
 
 function App() {
   return (
@@ -15,23 +14,7 @@ function App() {
       <div className="content">
         <h1>New Releases Books</h1>
 
-        <div className="cards-container">
-          <CardList></CardList>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-        </div>
+        <NewBooks></NewBooks>
 
         <section className="subscribe">
           <h2>SUBSCRIBE TO NEWSLETTER</h2>
