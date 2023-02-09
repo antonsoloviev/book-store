@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import Card from '../Card/Card';
+import Card from '../../components/Card/Card';
 import { getBooks, booksSelector, IBook } from '../../store/books-slice';
+import Subscribe from '../../components/Subscribe/Subscribe';
 
 export const NewBooks = () => {
   const books = useAppSelector(booksSelector);
@@ -12,10 +13,14 @@ export const NewBooks = () => {
   }, [dispatch]);
 
   return (
-    <div className="cards-container">
-      {books.map((book: IBook) => {
-        return <Card key={book.isbn13} data={book} />;
-      })}
+    <div className="new-releases">
+      <h1>New Releases Books</h1>
+      <div className="cards-container">
+        {books.map((book: IBook) => {
+          return <Card key={book.isbn13} data={book} />;
+        })}
+      </div>
+      <Subscribe></Subscribe>
     </div>
   );
 };

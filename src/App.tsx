@@ -1,58 +1,34 @@
 import React from 'react';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { NewBooks } from './components/NewBooks/NewBooks';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import { NewBooks } from './pages/new-books/NewBooks';
+import { BookPage } from './pages/book-page/BookPage';
+import { PageNotFound } from './pages/page-not-found/PageNotFound';
+import Subscribe from './components/Subscribe/Subscribe';
 
 function App() {
   return (
-    <div className="wrapper">
-      <Header></Header>
+    <BrowserRouter>
+      <div className="wrapper">
+        <Header></Header>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<NewBooks />} />
+            <Route path="/books/:id" element={<BookPage />} />
+            {/* <Route path="/sign-in" element={<Registration />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/favorites" element={<Favorites />} /> */}
 
-      <div className="content">
-        <h1>New Releases Books</h1>
+            <Route path="/*" element={<PageNotFound />} />
+          </Routes>
 
-        <NewBooks></NewBooks>
-
-        <section className="subscribe">
-          <h2>SUBSCRIBE TO NEWSLETTER</h2>
-          <p>
-            Be the first to know about new IT books, upcoming releases,
-            exclusive offers and more.
-          </p>
-          <div className="subscribe-bottom">
-            <input type="text" />
-            <button>SUBSCRIBE</button>
-          </div>
-        </section>
-
-        <Footer></Footer>
-
-        {/* FONTS */}
-        {/* <div className="font-200">New releases books NEW RELEASES BOOKS</div>
-        <div className="font-300">New releases books NEW RELEASES BOOKS</div>
-        <div className="font-400">New releases books NEW RELEASES BOOKS</div>
-        <div className="font-700">New releases books NEW RELEASES BOOKS</div>
-
-        <div className="font-helios-regular">
-          New releases books NEW RELEASES BOOKS
+          <Footer></Footer>
         </div>
-
-        <div className="font-helios-italic">
-          New releases books NEW RELEASES BOOKS
-        </div>
-
-        <div className="font-helios-italic-light">
-          New releases books NEW RELEASES BOOKS
-        </div>
-
-        <div className="font-helios-bold">
-          New releases books NEW RELEASES BOOKS
-        </div> */}
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

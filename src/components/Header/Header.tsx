@@ -1,15 +1,18 @@
 import React from 'react';
 
-import LogoSVG from '../assets/images/bookstore-logo.svg';
-import IconFavSVG from '../assets/images/icon-fav.svg';
-import IconCartSVG from '../assets/images/icon-cart.svg';
-import IconUserSVG from '../assets/images/icon-user.svg';
-import IconSearchSVG from '../assets/images/icon-search.svg';
+import LogoSVG from '../../assets/images/bookstore-logo.svg';
+import IconFavSVG from '../../assets/images/icon-fav.svg';
+import IconCartSVG from '../../assets/images/icon-cart.svg';
+import IconUserSVG from '../../assets/images/icon-user.svg';
+import IconSearchSVG from '../../assets/images/icon-search.svg';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header className="header">
-      <img src={LogoSVG} className="app-logo" alt="logo" />
+      <Link to="/">
+        <img src={LogoSVG} className="app-logo" alt="logo" />
+      </Link>
       <div className="header-search">
         <input type="text" placeholder="Search..." />
         <img src={IconSearchSVG} alt="search" />
