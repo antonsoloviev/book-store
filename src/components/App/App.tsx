@@ -2,12 +2,15 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import { NewBooks } from './pages/new-books/NewBooks';
-import { BookPage } from './pages/book-page/BookPage';
-import { PageNotFound } from './pages/page-not-found/PageNotFound';
-import Subscribe from './components/Subscribe/Subscribe';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { NewBooks } from '../../pages/new-books/NewBooks';
+import { BookPage } from '../../pages/book-page/BookPage';
+import { Cart } from '../../pages/cart/Cart';
+import { Favorites } from '../../pages/favorites/Favorites';
+
+import { PageNotFound } from '../../pages/page-not-found/PageNotFound';
+import { Account } from '../../pages/account/Account';
 
 function App() {
   return (
@@ -18,15 +21,14 @@ function App() {
           <Routes>
             <Route path="/" element={<NewBooks />} />
             <Route path="/books/:id" element={<BookPage />} />
-            {/* <Route path="/sign-in" element={<Registration />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/favorites" element={<Favorites />} /> */}
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/account" element={<Account />} />
 
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
-
-          <Footer></Footer>
         </div>
+        <Footer></Footer>
       </div>
     </BrowserRouter>
   );

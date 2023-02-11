@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from '../Button/Button';
+
+import './Subscribe.scss';
 
 function Subscribe() {
   return (
@@ -10,7 +13,7 @@ function Subscribe() {
       </p>
       <div className="subscribe-bottom">
         <input type="text" />
-        <button>SUBSCRIBE</button>
+        <Button text="SUBSCRIBE" className="button button-subscribe"></Button>
       </div>
     </section>
   );

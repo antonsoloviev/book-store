@@ -1,7 +1,8 @@
 // const baseUrl = 'https://638cfa02eafd555746b35ef9.mockapi.io/';
+// https://api.itbook.store/1.0/search/
 export const booksUrl = 'https://api.itbook.store/1.0/';
-
 export const booksNewUrl = `${booksUrl}new`;
+export const booksSearchUrl = 'https://api.itbook.store/1.0/search/';
 
 export const menuLinks = [
   { id: 0, value: 'Favorites', link: '/favorites', href: '/favorites' },

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as StarSVG } from '../../assets/images/icon-star.svg';
 import { IBook } from '../../store/books-slice';
 
-import './style.scss';
+import './Card.scss';
 
-type CardProps = {
+export type CardProps = {
   key: string;
   data: IBook;
 };
@@ -25,11 +25,11 @@ function Card(props: CardProps) {
         <div className="card-bottom">
           <p>{props.data.price}</p>
           <div className="card-bottom-stars">
+            {/* <StarSVG className="card-bottom-stars__star" alt="star" />
             <StarSVG className="card-bottom-stars__star" alt="star" />
             <StarSVG className="card-bottom-stars__star" alt="star" />
             <StarSVG className="card-bottom-stars__star" alt="star" />
-            <StarSVG className="card-bottom-stars__star" alt="star" />
-            <StarSVG className="card-bottom-stars__star" alt="star" />
+            <StarSVG className="card-bottom-stars__star" alt="star" /> */}
           </div>
         </div>
       </div>

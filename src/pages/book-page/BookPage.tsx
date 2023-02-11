@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
-import { ReactComponent as StarSVG } from '../../assets/images/icon-star.svg';
-import { IBook } from '../../store/books-slice';
+import { ReactComponent as HeartSVG } from '../../assets/images/icon-fav.svg';
+import { favoritesIdsSelector, IBook, likeBook } from '../../store/books-slice';
 import Card from '../../components/Card/Card';
 
-import './style.scss';
+import './BookPage.scss';
 import Subscribe from '../../components/Subscribe/Subscribe';
+import Button from '../../components/Button/Button';
 
 // https://api.itbook.store/1.0/books/9781617294136
 
@@ -49,9 +50,9 @@ export function BookPage() {
     year: 0
   });
   const params = useParams();
-  console.log(params);
-
+  const favoriteIds = useAppSelector(favoritesIdsSelector);
   const dispatch = useAppDispatch();
+  const [activeState, setActiveState] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -60,7 +61,6 @@ export function BookPage() {
       );
       const book = await response.json();
       setBook(book);
-      console.log(book);
     };
 
     fetchPost();
@@ -71,15 +71,22 @@ export function BookPage() {
       <h2>{book.title}</h2>
       <div className="top">
         <div className="top-image">
-          <div className="like-box">
-            <StarSVG className="like-box__star" alt="star"></StarSVG>
+          <div
+            className={
+              favoriteIds?.includes(book.isbn13)
+                ? 'like-box like-box__active'
+                : 'like-box'
+            }
+            onClick={() => dispatch(likeBook(book.isbn13))}
+          >
+            <HeartSVG className="like-box__heart" alt="heart"></HeartSVG>
           </div>
           <img src={book.image} alt="book-image" />
         </div>
         <div className="top-add-to-card">
           <div className="top-add-to-card__raw numbers">
             <span>{book.price}</span>
-            <div className="rating">{book.rating}</div>
+            <div className="rating">Rating: {book.rating}</div>
           </div>
           <div className="top-add-to-card__raw authors">
             <span>Authors</span>
@@ -97,7 +104,10 @@ export function BookPage() {
             <span>Year</span>
             <p className="year-text">{book.year}</p>
           </div>
-          <button>ADD TO CART</button>
+          <Button
+            text="Add to cart"
+            className="button button-add-to-cart"
+          ></Button>
         </div>
       </div>
       <div className="bottom">

@@ -24,10 +24,21 @@
         background-color: $color-primary-black;
         position: absolute;
         right: 0;
+        cursor: pointer;
 
-        &__star {
-          fill: $color-red-light;
+        &__heart {
+          fill: $bg-color-light;
+          transition: transform 0.3s ease-in-out;
         }
+      }
+
+      .like-box:hover .like-box__heart {
+        stroke: $bg-color-light;
+        transform: scale(1.2);
+      }
+
+      .like-box__active .like-box__heart {
+        fill: $color-red-light;
       }
 
       img {
@@ -53,6 +64,10 @@
         span {
           color: $color-secondary-gray;
         }
+      }
+
+      &__raw.year {
+        margin-bottom: 24px;
       }
 
       .numbers {
