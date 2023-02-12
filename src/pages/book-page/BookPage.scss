@@ -12,8 +12,9 @@
     &-image {
       width: 544px;
       height: 472px;
-      background-color: $color-orange;
+      background-color: $bg-color-light;
       position: relative;
+      user-select: none;
 
       .like-box {
         display: flex;

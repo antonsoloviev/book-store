@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
@@ -9,7 +9,8 @@ import Card from '../../components/Card/Card';
 
 import './BookPage.scss';
 import Subscribe from '../../components/Subscribe/Subscribe';
-import Button from '../../components/Button/Button';
+import Button from '../../components/Buttons/Button';
+import ButtonBack from '../../components/Buttons/ButtonBack';
 
 // https://api.itbook.store/1.0/books/9781617294136
 
@@ -50,6 +51,7 @@ export function BookPage() {
     year: 0
   });
   const params = useParams();
+  const navigate = useNavigate();
   const favoriteIds = useAppSelector(favoritesIdsSelector);
   const dispatch = useAppDispatch();
   const [activeState, setActiveState] = useState(false);
@@ -68,6 +70,7 @@ export function BookPage() {
 
   return (
     <div className="card-page">
+      <ButtonBack />
       <h2>{book.title}</h2>
       <div className="top">
         <div className="top-image">

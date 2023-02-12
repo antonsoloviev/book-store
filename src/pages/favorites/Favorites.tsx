@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import {
   favBooksSelector,
   favoritesIdsSelector,
@@ -10,10 +11,12 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import FavCard from './FavCard/FavCard';
 
 import './Favorites.scss';
+import ButtonBack from '../../components/Buttons/ButtonBack';
 
 export const Favorites = () => {
   const favoriteIds = useAppSelector(favoritesIdsSelector);
   const favBooks = useAppSelector(favBooksSelector);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -22,6 +25,7 @@ export const Favorites = () => {
 
   return (
     <div className="favorites">
+      <ButtonBack />
       <h2>FAVORITES</h2>
       {favBooks?.map((book: IBook) => {
         return <FavCard key={book.isbn13} data={book} />;
