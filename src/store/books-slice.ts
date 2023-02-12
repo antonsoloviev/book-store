@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import { booksNewUrl, booksSearchUrl } from '../constants';
 
@@ -9,6 +9,7 @@ export interface IBook {
   price: string;
   image: string;
   url: string;
+  quantity: number;
 }
 
 interface IbooksState {

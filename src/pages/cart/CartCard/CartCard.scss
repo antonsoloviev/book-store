@@ -1,0 +1,139 @@
+@import '../../../styles/variables.scss';
+
+.cart-card {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $bg-color-gray;
+  transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+
+  &-content {
+    display: flex;
+    align-items: center;
+  }
+
+  &-liked {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: pointer;
+
+    &__cancel {
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+
+  &-liked:hover &-liked__cancel {
+    transform: scale(2);
+  }
+
+  &-img {
+    width: 256px;
+    height: 192px;
+    display: flex;
+    justify-content: center;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $bg-color-light;
+    }
+
+    img {
+      width: 164px;
+      // margin-bottom: 20px;
+      align-self: center;
+      user-select: none;
+    }
+  }
+
+  &-text {
+    width: 500px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-title {
+      font-family: 'Bebas Neue';
+      font-size: 2.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: $color-primary-black;
+    }
+
+    &-subtitle {
+      font-family: $font-family-default;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: $color-secondary-gray;
+    }
+
+    &-counter {
+      display: flex;
+      align-items: center;
+      font-size: 3rem;
+
+      &__minus,
+      &__plus {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+
+        cursor: pointer;
+      }
+
+      &__minus:hover,
+      &__plus:hover {
+        background-color: $bg-color-light;
+      }
+
+      &__quantity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        text-align: center;
+        user-select: none;
+      }
+    }
+  }
+
+  &-price {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 130px;
+
+    p {
+      font-family: 'Bebas Neue';
+      font-size: 4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $color-primary-black;
+    }
+
+    &-stars {
+      display: flex;
+      gap: 8px;
+      align-self: center;
+
+      &__star {
+        fill: $color-primary-black;
+      }
+    }
+  }
+}

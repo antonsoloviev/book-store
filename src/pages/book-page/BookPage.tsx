@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
 import { ReactComponent as HeartSVG } from '../../assets/images/icon-fav.svg';
-import { favoritesIdsSelector, IBook, likeBook } from '../../store/books-slice';
-import Card from '../../components/Card/Card';
+import { favoritesIdsSelector, likeBook } from '../../store/books-slice';
 
 import './BookPage.scss';
 import Subscribe from '../../components/Subscribe/Subscribe';
 import Button from '../../components/Buttons/Button';
 import ButtonBack from '../../components/Buttons/ButtonBack';
-
-// https://api.itbook.store/1.0/books/9781617294136
+import { addToCart } from '../../store/cart-slice';
 
 export interface IBookPage {
   authors: string;
@@ -30,6 +28,7 @@ export interface IBookPage {
   title: string;
   url: string;
   year: number;
+  quantity: number;
 }
 
 export function BookPage() {
@@ -48,13 +47,12 @@ export function BookPage() {
     subtitle: '',
     title: '',
     url: '',
-    year: 0
+    year: 0,
+    quantity: 1
   });
   const params = useParams();
-  const navigate = useNavigate();
   const favoriteIds = useAppSelector(favoritesIdsSelector);
   const dispatch = useAppDispatch();
-  const [activeState, setActiveState] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -110,6 +108,7 @@ export function BookPage() {
           <Button
             text="Add to cart"
             className="button button-add-to-cart"
+            onClick={() => dispatch(addToCart(book))}
           ></Button>
         </div>
       </div>

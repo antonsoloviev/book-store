@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as StarSVG } from '../../../assets/images/icon-star.svg';
 import { ReactComponent as HeartSVG } from '../../../assets/images/icon-fav.svg';
-import { IBook } from '../../../store/books-slice';
 
 import './FavCard.scss';
 import { CardProps } from '../../../components/Card/Card';

@@ -1,8 +1,6 @@
 import React from 'react';
 
 import LogoSVG from '../../assets/images/bookstore-logo.svg';
-import IconCartSVG from '../../assets/images/icon-cart.svg';
-import IconUserSVG from '../../assets/images/icon-user.svg';
 import IconSearchSVG from '../../assets/images/icon-search.svg';
 import { Link } from 'react-router-dom';
 import { ReactComponent as HeartSVG } from '../../assets/images/icon-fav.svg';
@@ -12,9 +10,11 @@ import { ReactComponent as UserSVG } from '../../assets/images/icon-user.svg';
 import './Header.scss';
 import { useAppSelector } from '../../store/store';
 import { favoritesIdsSelector } from '../../store/books-slice';
+import { cartSelector } from '../../store/cart-slice';
 
 function Header() {
   const favoriteIds = useAppSelector(favoritesIdsSelector);
+  const cart = useAppSelector(cartSelector);
 
   return (
     <header className="header">
@@ -27,11 +27,6 @@ function Header() {
       </div>
       <div className="header-right">
         <Link to="/favorites">
-          {/* className=
-          {favoriteIds?.includes(book.isbn13)
-            ? 'like-box like-box__active'
-            : 'like-box'} */}
-          {/* "header-icon header-icon__fav" */}
           <HeartSVG
             className={
               favoriteIds.length > 0
@@ -41,7 +36,14 @@ function Header() {
           ></HeartSVG>
         </Link>
         <Link to="/cart">
-          <CartSVG className="header-icon header-icon__cart"></CartSVG>
+          <CartSVG
+            // className="header-icon header-icon__cart"
+            className={
+              cart.length > 0
+                ? 'header-icon header-icon__active header-icon__cart'
+                : 'header-icon header-icon__cart'
+            }
+          ></CartSVG>
         </Link>
         <Link to="/account">
           <UserSVG className="header-icon header-icon__user"></UserSVG>
