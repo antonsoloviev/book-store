@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 
 import {
   favBooksSelector,
@@ -16,7 +15,6 @@ import ButtonBack from '../../components/Buttons/ButtonBack';
 export const Favorites = () => {
   const favoriteIds = useAppSelector(favoritesIdsSelector);
   const favBooks = useAppSelector(favBooksSelector);
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
