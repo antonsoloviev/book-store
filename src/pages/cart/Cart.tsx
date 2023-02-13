@@ -27,23 +27,36 @@ export const Cart = () => {
       <ButtonBack />
       <h2>YOUR CART</h2>
       <div className="cart-books">
-        {cart?.map((book: IBookPage) => {
-          return <CartCard key={book.isbn13} data={book} />;
-        })}
+        {cart.length ? (
+          cart?.map((book: IBookPage) => {
+            return <CartCard key={book.isbn13} data={book} />;
+          })
+        ) : (
+          <div className="cart-empty">
+            <p> YOUR CART IS EMPTY </p>
+            <span>🙈</span>
+          </div>
+        )}
       </div>
       <div className="cart-total">
-        <p>
-          <span>TOTAL:</span>
-          <span>{'$' + countTotal(cart)}</span>
-        </p>
-        <Link to={`/check-out`}>
-          <Button
-            text="CHECK OUT"
-            className="button button-check-out"
-            // eslint-disable-next-line no-console
-            onClick={() => console.log('thank you')}
-          ></Button>
-        </Link>
+        {cart.length ? (
+          <>
+            <p>
+              <span>TOTAL:</span>
+              <span>{'$' + countTotal(cart)}</span>
+            </p>
+            <Link to={`/check-out`}>
+              <Button
+                text="CHECK OUT"
+                className="button button-check-out"
+                // eslint-disable-next-line no-console
+                onClick={() => console.log('thank you')}
+              ></Button>
+            </Link>
+          </>
+        ) : (
+          <span></span>
+        )}
       </div>
     </div>
   );
