@@ -11,6 +11,7 @@ import { Favorites } from '../../pages/favorites/Favorites';
 
 import { PageNotFound } from '../../pages/page-not-found/PageNotFound';
 import { Account } from '../../pages/account/Account';
+import { SearchPage } from '../../pages/search/SearchPage';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<NewBooks />} />
+            <Route path="/search" element={<SearchPage />} />
+
             <Route path="/books/:id" element={<BookPage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/favorites" element={<Favorites />} />

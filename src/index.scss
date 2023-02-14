@@ -1,12 +1,7 @@
-/* import */
 @import './styles/reset.scss';
 @import './styles/fonts.scss';
 @import './styles/variables.scss';
 @import './styles/mixins.scss';
-
-// @import 'variables.scss';
-
-// @import 'mixins.scss';
 
 body {
   margin: 0;
@@ -35,63 +30,4 @@ h1 {
 h2 {
   font-family: 'Bebas Neue';
   font-size: 4rem;
-}
-
-.font-200 {
-  font-family: 'Bebas Neue';
-  font-size: 1.6rem;
-  font-weight: 200;
-  margin-bottom: 8px;
-}
-
-.font-300 {
-  font-family: 'Bebas Neue';
-  font-size: 1.6rem;
-  font-weight: 300;
-  margin-bottom: 8px;
-}
-
-.font-400 {
-  font-family: 'Bebas Neue';
-  font-size: 1.6rem;
-  font-weight: 400;
-  margin-bottom: 8px;
-}
-
-.font-700 {
-  font-family: 'Bebas Neue';
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.font-helios-regular {
-  font-family: 'HeliosC';
-  font-size: 1.6rem;
-  font-weight: 400;
-  margin-bottom: 8px;
-}
-
-.font-helios-italic {
-  font-family: 'HeliosC';
-  font-size: 1.6rem;
-  font-weight: 400;
-  margin-bottom: 8px;
-  font-style: italic;
-}
-
-.font-helios-italic-light {
-  font-family: 'HeliosC';
-  font-size: 1.6rem;
-  font-weight: 300;
-  margin-bottom: 8px;
-  font-style: italic;
-}
-
-.font-helios-bold {
-  font-family: 'HeliosC';
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-style: normal;
 }

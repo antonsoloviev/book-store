@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import { booksNewUrl, booksSearchUrl } from '../constants';
+import { fetchBooksThunk, IBooksResponse } from './books-api';
 
 export interface IBook {
   title: string;
@@ -14,15 +15,17 @@ export interface IBook {
 
 interface IbooksState {
   books: IBook[];
+  newBooks: IBook[];
   favBooks: IBook[];
   favoriteBooksIds: string[];
   count: number;
-  error: null | string;
+  error: null | undefined | string;
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
 const initialBooksState: IbooksState = {
   books: [],
+  newBooks: [],
   favBooks: [],
   favoriteBooksIds: [],
   count: 0,
@@ -74,7 +77,7 @@ const booksSlice = createSlice({
     });
     builder.addCase(getBooks.fulfilled, (state, action) => {
       state.loading = 'succeeded';
-      state.books = action.payload;
+      state.newBooks = action.payload;
     });
 
     builder.addCase(getFavoritesBooks.pending, (state) => {
@@ -85,11 +88,36 @@ const booksSlice = createSlice({
       state.loading = 'succeeded';
       state.favBooks = action.payload;
     });
+
+    builder.addCase(fetchBooksThunk.pending, (state) => {
+      state.loading = 'pending';
+    });
+    builder.addCase(
+      fetchBooksThunk.fulfilled,
+      (state, action: PayloadAction<IBooksResponse>) => {
+        state.loading = 'succeeded';
+        state.books = action.payload.books;
+        state.count = action.payload.total;
+        // state.isNewPostCreated = false;
+      }
+    );
+    builder.addCase(fetchBooksThunk.rejected, (state, action) => {
+      state.loading = 'failed';
+      state.error = action.error.message;
+    });
   }
 });
 
 export const booksSelector = (state: RootState) => {
   return state.books.books;
+};
+
+export const totalSelector = (state: RootState) => {
+  return state.books.count;
+};
+
+export const newBooksSelector = (state: RootState) => {
+  return state.books.newBooks;
 };
 
 export const favoritesIdsSelector = (state: RootState) => {

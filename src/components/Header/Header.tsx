@@ -11,6 +11,7 @@ import './Header.scss';
 import { useAppSelector } from '../../store/store';
 import { favoritesIdsSelector } from '../../store/books-slice';
 import { cartSelector } from '../../store/cart-slice';
+import { Search } from '../Search/Search';
 
 function Header() {
   const favoriteIds = useAppSelector(favoritesIdsSelector);
@@ -21,10 +22,11 @@ function Header() {
       <Link to="/">
         <img src={LogoSVG} className="app-logo" alt="logo" />
       </Link>
-      <div className="header-search">
+      {/* <div className="header-search">
         <input type="text" placeholder="Search..." />
         <img src={IconSearchSVG} alt="search" />
-      </div>
+      </div> */}
+      <Search></Search>
       <div className="header-right">
         <Link to="/favorites">
           <HeartSVG

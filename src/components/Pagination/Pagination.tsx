@@ -1,0 +1,129 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { getNextAndPrevPages } from '../../helpers/getNextAndPrevPages';
+
+import styles from './Pagination.module.scss';
+
+import Icon from '../Icon/Icon';
+import useViewport from '../../hooks/useViewport';
+
+interface IPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  input?: string | undefined;
+}
+interface INextAndPrevPages {
+  prevPage: number | undefined;
+  nextPage: number | undefined;
+}
+
+export type { IPaginationProps, INextAndPrevPages };
+
+const getTotalPages = (totalPages: number): number[] =>
+  Array.from({ length: totalPages }, (_, index) => index + 1);
+
+const getSlicePages = (
+  pages: number[],
+  currentPage: number,
+  slice: number
+): number[] => {
+  const indexPage = pages.indexOf(currentPage);
+
+  if (indexPage === -1) {
+    return [];
+  }
+
+  if (pages.length < 5) {
+    return pages;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (currentPage > pages.at(-5)) {
+    return pages.slice(pages[pages.length - 5], indexPage + slice);
+  }
+
+  return pages.slice(indexPage, indexPage + slice);
+};
+
+const Pagination = ({ currentPage, totalPages, input }: IPaginationProps) => {
+  const isTotalPages = getTotalPages(totalPages);
+  const { prevPage, nextPage } = getNextAndPrevPages(totalPages, currentPage);
+  const viewport = useViewport();
+  if (totalPages === 1) {
+    return <></>;
+  }
+
+  const slicePages = getSlicePages(
+    isTotalPages,
+    currentPage,
+    viewport.mobile ? 2 : 4
+  );
+
+  return (
+    <div className={styles.pagination}>
+      <Link
+        to={`/search/${input}/${prevPage}`}
+        className={styles.pagination__arrow}
+      >
+        <Icon name={'arrowLeft'} strokeWidth={1.5} />
+        {viewport.mobile ? '' : 'Prev'}
+      </Link>
+
+      <div className={styles.groupPagination}>
+        {currentPage > 1 && totalPages > 4 && (
+          <>
+            <Link to={`/search/${input}/1`} className={styles.link}>
+              1
+            </Link>
+
+            <div>...</div>
+          </>
+        )}
+
+        <div className={styles.pagination__links}>
+          {slicePages.map((page) => (
+            <Link
+              to={`/search/${input}/${page}`}
+              key={page}
+              className={currentPage === page ? styles.active : styles.link}
+            >
+              {page}
+            </Link>
+          ))}
+        </div>
+
+        {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          slicePages.at(-1) < totalPages && '...'
+        }
+
+        {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          slicePages.at(-1) < totalPages && (
+            <Link
+              to={`/search/${input}/${totalPages}`}
+              className={
+                currentPage === totalPages ? styles.active : styles.link
+              }
+            >
+              {totalPages}
+            </Link>
+          )
+        }
+      </div>
+
+      <Link
+        to={`/search/${input}/${nextPage}`}
+        className={styles.pagination__arrow}
+      >
+        {viewport.mobile ? '' : 'Next'}
+        <Icon name={'arrowRight'} strokeWidth={1.5} />
+      </Link>
+    </div>
+  );
+};
+export default Pagination;
