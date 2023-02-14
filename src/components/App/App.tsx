@@ -21,7 +21,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<NewBooks />} />
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/search/:input/:page" element={<SearchPage />} />
 
             <Route path="/books/:id" element={<BookPage />} />
             <Route path="/cart" element={<Cart />} />

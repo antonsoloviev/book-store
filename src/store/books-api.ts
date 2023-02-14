@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { RootState } from './store';
-import { booksNewUrl, booksSearchUrl } from '../constants';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { booksSearchUrl } from '../constants';
 import { buildUrl } from '../helpers/buildUrl';
 import { IBook } from './books-slice';
 
@@ -10,16 +10,32 @@ export interface IBooksResponse {
   total: number;
 }
 
+interface ISearch {
+  input: string | undefined;
+  page: string | undefined;
+}
+
 export const fetchBooksThunk = createAsyncThunk<
   IBooksResponse,
   string | Record<string, string> | string[][] | URLSearchParams
->('books/fetchBooks', async (booksUrlParams, { rejectWithValue }) => {
+>('books/fetchBooks', async (booksUrlParams, thunkAPI) => {
   try {
     const url = buildUrl(booksSearchUrl, booksUrlParams);
-    console.log(url);
     const response = await fetch(url);
     return response.json();
-  } catch (err: any) {
-    return rejectWithValue(err.message);
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err);
   }
 });
+
+export const fetchBooksSearchThunk = createAsyncThunk(
+  'books/fetchBooksSearch',
+  async ({ input, page }: ISearch, thunkAPI) => {
+    try {
+      const response = await fetch(`${booksSearchUrl}/${input}/${page}`);
+      return await response.json();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

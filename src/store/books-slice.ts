@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import { booksNewUrl, booksSearchUrl } from '../constants';
-import { fetchBooksThunk, IBooksResponse } from './books-api';
+import {
+  fetchBooksThunk,
+  IBooksResponse,
+  fetchBooksSearchThunk
+} from './books-api';
 
 export interface IBook {
   title: string;
@@ -102,6 +106,23 @@ const booksSlice = createSlice({
       }
     );
     builder.addCase(fetchBooksThunk.rejected, (state, action) => {
+      state.loading = 'failed';
+      state.error = action.error.message;
+    });
+
+    builder.addCase(fetchBooksSearchThunk.pending, (state) => {
+      state.loading = 'pending';
+    });
+    builder.addCase(
+      fetchBooksSearchThunk.fulfilled,
+      (state, action: PayloadAction<IBooksResponse>) => {
+        state.loading = 'succeeded';
+        state.books = action.payload.books;
+        state.count = action.payload.total;
+        // state.isNewPostCreated = false;
+      }
+    );
+    builder.addCase(fetchBooksSearchThunk.rejected, (state, action) => {
       state.loading = 'failed';
       state.error = action.error.message;
     });
