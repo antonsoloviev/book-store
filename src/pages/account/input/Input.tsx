@@ -6,7 +6,7 @@ interface IpropsInput {
   type: string;
   placeholder?: string;
   value?: string;
-  onChange?: (FC: any) => void;
+  onChange?: (FC: unknown) => void;
 }
 
 export const Input = (props: IpropsInput) => {
