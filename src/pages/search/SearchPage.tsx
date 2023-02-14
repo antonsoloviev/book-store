@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import Card from '../../components/Card/Card';
-import {
-  getBooks,
-  booksSelector,
-  IBook,
-  totalSelector
-} from '../../store/books-slice';
-import Subscribe from '../../components/Subscribe/Subscribe';
-import { fetchBooksSearchThunk, fetchBooksThunk } from '../../store/books-api';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { booksSelector, IBook, totalSelector } from '../../store/books-slice';
+import { fetchBooksSearchThunk } from '../../store/books-api';
+import { useParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination/Pagination';
 
 export const SearchPage = () => {
