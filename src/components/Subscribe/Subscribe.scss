@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+
+.subscribe {
+  height: 288px;
+  padding: 56px 64px;
+  background-color: $color-purple;
+  margin-bottom: 72px;
+
+  h2 {
+    font-family: 'Bebas Neue';
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  &-subtitle {
+    font-family: $font-family-default;
+    font-size: 1.8rem;
+    color: $color-secondary-gray;
+    margin-bottom: 32px;
+  }
+
+  &-bottom {
+    display: flex;
+    margin-bottom: 8px;
+
+    input {
+      width: 845px;
+      height: 56px;
+      font-size: 1.8rem;
+      padding-left: 4px;
+    }
+
+    .button-subscribe {
+      width: 147px;
+    }
+  }
+
+  &-message {
+    color: $color-primary-black;
+    font-size: 2.4rem;
+  }
+}

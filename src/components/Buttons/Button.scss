@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.button {
+  height: 56px;
+  width: 100%;
+  font-family: 'Bebas Neue';
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+  color: white;
+  background-color: $color-primary-black;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, letter-spacing 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: $color-primary-gray;
+  letter-spacing: 2px;
+}

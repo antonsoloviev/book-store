@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  font-family: $font-family-default;
+  font-size: 1.6rem;
+  color: $color-secondary-gray;
+  border-top: 1px solid $bg-color-gray;
+}

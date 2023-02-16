@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.header-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 542px;
+  height: 56px;
+  border: 1px solid $bg-color-gray;
+  padding: 16px;
+
+  input {
+    width: 100%;
+    font-family: $font-family-default;
+    font-size: 1.8rem;
+    height: 32px;
+    padding-left: 3px;
+    border: 0;
+    outline: none;
+  }
+
+  .search-icon {
+    cursor: pointer;
+  }
+}

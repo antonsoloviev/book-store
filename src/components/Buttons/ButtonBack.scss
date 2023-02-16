@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.button-go-back {
+  width: 100px;
+  height: 56px;
+  background-color: white;
+  margin-bottom: 8px;
+  cursor: pointer;
+
+  .arrow-back {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover .arrow-back {
+    fill: $color-red-light;
+    transform: translateX(-20px);
+  }
+}
