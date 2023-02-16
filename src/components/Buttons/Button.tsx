@@ -5,6 +5,7 @@ import './Button.scss';
 export interface ButtonProps {
   text?: string;
   className?: string;
+  type?: string;
   children?: React.ReactNode;
   onClick?: () => void;
 }

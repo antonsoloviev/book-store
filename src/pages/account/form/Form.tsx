@@ -1,5 +1,5 @@
 import React from 'react';
-import './Form.css';
+import './Form.scss';
 
 interface IpropsForm {
   name: string;
@@ -24,10 +24,7 @@ export const Form = (props: IpropsForm) => {
       name={name}
       className="form"
     >
-      <div className="form__container">
-        <h2>Sign Up</h2>
-        {children}
-      </div>
+      <div className="form__container">{children}</div>
     </form>
   );
 };

@@ -10,7 +10,7 @@ import { Cart } from '../../pages/cart/Cart';
 import { Favorites } from '../../pages/favorites/Favorites';
 
 import { PageNotFound } from '../../pages/page-not-found/PageNotFound';
-import { Account } from '../../pages/account/Account';
+import { AccountPage } from '../../pages/account/AccountPage';
 import { SearchPage } from '../../pages/search/SearchPage';
 
 function App() {
@@ -26,7 +26,9 @@ function App() {
             <Route path="/books/:id" element={<BookPage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/account" element={<Account />} />
+            <Route path="/account" element={<AccountPage />}>
+              <Route path="user-account" element={<Favorites />} />
+            </Route>
 
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
