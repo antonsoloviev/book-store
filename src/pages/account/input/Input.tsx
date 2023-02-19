@@ -1,12 +1,13 @@
 import React from 'react';
-import './Input.css';
+import './Input.scss';
 
 interface IpropsInput {
-  name: string;
+  name?: string;
   type: string;
   placeholder?: string;
   value?: string;
-  onChange?: (FC: unknown) => void;
+  defaultValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = (props: IpropsInput) => {

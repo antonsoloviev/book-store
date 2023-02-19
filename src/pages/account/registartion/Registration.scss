@@ -1,0 +1,72 @@
+@import '../../../styles/variables.scss';
+
+.registration {
+  width: 544px;
+  border: 1px solid $bg-color-gray;
+
+  .react-tabs {
+    // -webkit-tap-highlight-color: transparent;
+    padding: 32px;
+
+    &__tab-list {
+      display: flex;
+      margin: 0 0 32px;
+      padding: 0;
+    }
+
+    &__tab {
+      height: 72px;
+      width: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue';
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: $color-secondary-gray;
+      cursor: pointer;
+      border-bottom: 1px solid $bg-color-gray;
+
+      &--disabled {
+        color: $color-secondary-gray;
+        cursor: default;
+      }
+    }
+
+    &__tab.react-tabs__tab--selected {
+      background: #fff;
+      border-bottom: 3px solid black;
+      color: black;
+    }
+
+    &__tab-panel {
+      display: none;
+
+      &--selected {
+        display: block;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 30px;
+
+        .warning-message {
+          color: red;
+          font-size: 2rem;
+        }
+
+        .button-login-google {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          align-items: center;
+          background-color: #fff;
+          color: $color-primary-black;
+        }
+      }
+    }
+  }
+}

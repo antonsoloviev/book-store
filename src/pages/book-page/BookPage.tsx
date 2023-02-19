@@ -10,7 +10,8 @@ import './BookPage.scss';
 import Subscribe from '../../components/Subscribe/Subscribe';
 import Button from '../../components/Buttons/Button';
 import ButtonBack from '../../components/Buttons/ButtonBack';
-import { addToCart } from '../../store/cart-slice';
+import { addToCart, removeItem } from '../../store/cart-slice';
+import Rating from '../../components/Rating/Rating';
 
 export interface IBookPage {
   authors: string;
@@ -53,6 +54,8 @@ export function BookPage() {
   const params = useParams();
   const favoriteIds = useAppSelector(favoritesIdsSelector);
   const dispatch = useAppDispatch();
+  const [ariaPressed, setAriaPressed] = useState(false);
+  const [btnText, setBtnText] = useState('ADD TO CART');
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -65,6 +68,18 @@ export function BookPage() {
 
     fetchPost();
   }, [params.id]);
+
+  const onButtonClick = () => {
+    if (ariaPressed === false) {
+      setAriaPressed(true);
+      dispatch(addToCart(book));
+      setBtnText('REMOVE FROM CART');
+    } else {
+      setAriaPressed(false);
+      dispatch(removeItem(book));
+      setBtnText('ADD TO CART');
+    }
+  };
 
   return (
     <div className="card-page">
@@ -87,7 +102,10 @@ export function BookPage() {
         <div className="top-add-to-card">
           <div className="top-add-to-card__raw numbers">
             <span>{book.price}</span>
-            <div className="rating">Rating: {book.rating}</div>
+            {/* <div className="rating">Rating: {book.rating}</div> */}
+            <div className="rating">
+              <Rating rating={book.rating}></Rating>
+            </div>
           </div>
           <div className="top-add-to-card__raw authors">
             <span>Authors</span>
@@ -105,11 +123,13 @@ export function BookPage() {
             <span>Year</span>
             <p className="year-text">{book.year}</p>
           </div>
-          <Button
-            text="Add to cart"
+          <button
             className="button button-add-to-cart"
-            onClick={() => dispatch(addToCart(book))}
-          ></Button>
+            aria-pressed={ariaPressed}
+            onClick={onButtonClick}
+          >
+            {btnText}
+          </button>
         </div>
       </div>
       <div className="bottom">

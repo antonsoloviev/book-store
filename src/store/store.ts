@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import booksReducer from './books-slice';
 import cartReducer from './cart-slice';
+import userReducer from './user-slice';
 
 export const store = configureStore({
   reducer: {
     books: booksReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    user: userReducer
   },
   devTools: true
 });

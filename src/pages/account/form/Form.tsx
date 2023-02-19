@@ -1,18 +1,18 @@
 import React from 'react';
-import './Form.css';
+import './Form.scss';
 
 interface IpropsForm {
   name: string;
   method: string;
   action: string;
-  onSubmit: () => void;
+  onSubmit: (email: string, password: string) => void;
   children: any;
 }
 
 export const Form = (props: IpropsForm) => {
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.onSubmit();
+    props.onSubmit;
   };
 
   const { children, method, name, action } = props;
@@ -24,10 +24,7 @@ export const Form = (props: IpropsForm) => {
       name={name}
       className="form"
     >
-      <div className="form__container">
-        <h2>Sign Up</h2>
-        {children}
-      </div>
+      <div className="form__container">{children}</div>
     </form>
   );
 };

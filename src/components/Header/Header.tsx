@@ -6,16 +6,23 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as HeartSVG } from '../../assets/images/icon-fav.svg';
 import { ReactComponent as CartSVG } from '../../assets/images/icon-cart.svg';
 import { ReactComponent as UserSVG } from '../../assets/images/icon-user.svg';
-
+import logOut from '../../assets/images/icon-logout-2.png';
 import './Header.scss';
-import { useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { favoritesIdsSelector } from '../../store/books-slice';
 import { cartSelector } from '../../store/cart-slice';
 import { Search } from '../Search/Search';
+import { removeUser, userSelector } from '../../store/user-slice';
 
 function Header() {
   const favoriteIds = useAppSelector(favoritesIdsSelector);
+  const dispatch = useAppDispatch();
   const cart = useAppSelector(cartSelector);
+  const user = useAppSelector(userSelector);
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+  };
 
   return (
     <header className="header">
@@ -50,6 +57,18 @@ function Header() {
         <Link to="/account">
           <UserSVG className="header-icon header-icon__user"></UserSVG>
         </Link>
+        {user.email ? (
+          <>
+            <img
+              src={logOut}
+              alt="logout"
+              onClick={handleLogout}
+              className="header-icon header-icon__logout"
+            />
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </header>
   );

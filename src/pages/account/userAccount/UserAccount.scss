@@ -1,0 +1,25 @@
+.account-page-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h2 {
+    margin-bottom: 72px;
+  }
+
+  h3 {
+    font-family: 'Bebas Neue';
+    font-size: 3.2rem;
+    margin-bottom: 24px;
+  }
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .input {
+    font-size: 2rem;
+  }
+}
