@@ -12,6 +12,8 @@ import { Favorites } from '../../pages/favorites/Favorites';
 import { PageNotFound } from '../../pages/page-not-found/PageNotFound';
 import { AccountPage } from '../../pages/account/AccountPage';
 import { SearchPage } from '../../pages/search/SearchPage';
+import { UserAccount } from '../../pages/account/userAccount/UserAccount';
+import { Thank } from '../../pages/thank/Thank';
 
 function App() {
   return (
@@ -22,14 +24,13 @@ function App() {
           <Routes>
             <Route path="/" element={<NewBooks />} />
             <Route path="/search/:input/:page" element={<SearchPage />} />
-
             <Route path="/books/:id" element={<BookPage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/account" element={<AccountPage />}>
-              <Route path="user-account" element={<Favorites />} />
+              <Route path="user-account" element={<UserAccount />} />
             </Route>
-
+            <Route path="/account/thank" element={<Thank />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </div>

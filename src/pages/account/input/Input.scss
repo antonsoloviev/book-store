@@ -12,9 +12,9 @@
 
   .input {
     height: 56px;
-    width: 400px;
+    width: 478px;
     border: solid 1px $bg-color-gray;
-    padding-left: 2px;
+    padding-left: 4px;
     font-size: 1.6rem;
     cursor: pointer;
   }
@@ -26,5 +26,12 @@
     letter-spacing: 1px;
     color: white;
     background-color: $color-primary-black;
+    transition: background-color 0.3s ease-in-out,
+      letter-spacing 0.3s ease-in-out;
+  }
+
+  .input[type='submit']:hover {
+    background-color: $color-primary-gray;
+    letter-spacing: 2px;
   }
 }

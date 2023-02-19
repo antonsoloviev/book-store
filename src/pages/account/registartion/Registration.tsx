@@ -1,48 +1,119 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-// import 'react-tabs/style/react-tabs.css';
-import { Form } from '../form/Form';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'firebase/auth';
+import { useAppDispatch } from '../../../store/store';
 import { Input } from '../input/Input';
+import { setUser } from '../../../store/user-slice';
+import { ReactComponent as GoogleSVG } from '../../../assets/images/icon-google.svg';
 
 import './Registration.scss';
+import Button from '../../../components/Buttons/Button';
 
 export const Registration = () => {
   const nav = useNavigate();
-  const [tabIndex, setTabIndex] = useState(1);
+  const dispatch = useAppDispatch();
+  const [tabIndex, setTabIndex] = useState(0);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [warning, setWarning] = useState('');
+  const provider = new GoogleAuthProvider();
 
-  const [state, setState] = useState({
-    isDefaultAvatar: false,
-    isEditMode: false,
-    password: '',
-    email: '',
-    name: '',
-    isAuthorized: false
-  });
-
-  const handleSubmit = () => {
-    setState((prevState) => ({
-      ...prevState,
-      isAuthorized: true
-    }));
-    // eslint-disable-next-line no-console, no-undef
-    console.log('state', state);
-    // eslint-disable-next-line no-console, no-undef
-    console.log('REGISTRATION COMPLETE');
+  const handleSignIn = (email: string, password: string) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setWarning('WELCOME');
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.refreshToken,
+            userName: user.displayName
+          })
+        );
+        nav('/');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (
+          errorCode === 'auth/wrong-password' ||
+          errorCode === 'auth/user-not-found'
+        ) {
+          setWarning('password or email is incorrect');
+          return;
+        }
+      });
   };
 
-  const handleChange = (event: any) => {
-    setState((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value
-    }));
-  };
-
-  useEffect(() => {
-    if (state.isAuthorized) {
-      nav('/success');
+  const handleSignUp = (email: string, password: string, name: string) => {
+    if (password !== confirmPassword) {
+      setWarning('Confirm-password must be the same as password');
+      return;
     }
-  }, [nav, state.isAuthorized]);
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: name
+        });
+        setWarning('you have successfully registered, please sign in!');
+        setTabIndex(0);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === 'auth/email-already-in-use') {
+          setWarning('user with this email already exists');
+          return;
+        }
+        if (errorCode === 'auth/weak-password') {
+          setWarning('password is weak, must be more then 5 symbols');
+          return;
+        }
+        // auth / weak - password;
+      });
+  };
+
+  const handleLoginWithGoogle = () => {
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        setWarning('WELCOME');
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.refreshToken,
+            userName: user.displayName
+          })
+        );
+        nav('/');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  };
 
   return (
     <div className="registration">
@@ -52,50 +123,87 @@ export const Registration = () => {
           <Tab>SIGN UP</Tab>
         </TabList>
         <TabPanel>
-          <Form onSubmit={handleSubmit} name="sign-up" action="" method="">
+          <div className="form-container">
+            <p className="warning-message">{warning}</p>
             <Input
               name="email"
               type="email"
               placeholder="email"
-              onChange={handleChange}
+              onChange={(e) => {
+                setEmail(e.currentTarget.value);
+              }}
             />
             <Input
               name="password"
               type="password"
               placeholder="password"
-              onChange={handleChange}
+              onChange={(e) => {
+                setPassword(e.currentTarget.value);
+              }}
             />
-            <Input type="submit" value="SUBMIT" />
-          </Form>
+            <Button
+              text="SUBMIT"
+              className="button button-add-to-cart"
+              onClick={() => {
+                handleSignIn(email, password);
+              }}
+            ></Button>
+            <Button
+              text="LOGIN WITH GOOGLE"
+              className="button button-login-google"
+              onClick={() => {
+                handleLoginWithGoogle();
+              }}
+            >
+              <GoogleSVG></GoogleSVG>
+            </Button>
+          </div>
         </TabPanel>
         <TabPanel>
-          <Form onSubmit={handleSubmit} name="sign-up" action="" method="">
+          <div className="form-container">
+            <p className="warning-message">{warning}</p>
             <Input
               name="name"
               type="text"
               placeholder="name"
-              onChange={handleChange}
+              onChange={(e) => {
+                setUserName(e.currentTarget.value);
+              }}
             />
             <Input
               name="email"
               type="email"
               placeholder="email"
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.currentTarget.value);
+              }}
             />
             <Input
               name="password"
               type="password"
               placeholder="password"
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.currentTarget.value);
+              }}
             />
             <Input
               name="confirm-password"
               type="password"
               placeholder="password"
-              onChange={handleChange}
+              onChange={(e) => {
+                setConfirmPassword(e.currentTarget.value);
+              }}
             />
-            <Input type="submit" value="SUBMIT" />
-          </Form>
+            <Button
+              text="SUBMIT"
+              className="button button-submit"
+              onClick={() => {
+                handleSignUp(email, password, userName);
+              }}
+            ></Button>
+          </div>
         </TabPanel>
       </Tabs>
     </div>

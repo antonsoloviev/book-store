@@ -6,7 +6,7 @@
 
   .react-tabs {
     // -webkit-tap-highlight-color: transparent;
-    padding: 24px;
+    padding: 32px;
 
     &__tab-list {
       display: flex;
@@ -45,6 +45,27 @@
 
       &--selected {
         display: block;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 30px;
+
+        .warning-message {
+          color: red;
+          font-size: 2rem;
+        }
+
+        .button-login-google {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          align-items: center;
+          background-color: #fff;
+          color: $color-primary-black;
+        }
       }
     }
   }
