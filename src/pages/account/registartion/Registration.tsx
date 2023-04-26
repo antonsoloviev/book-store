@@ -81,7 +81,6 @@ export const Registration = () => {
           setWarning('password is weak, must be more then 5 symbols');
           return;
         }
-        // auth / weak - password;
       });
   };
 
